@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Customer : MonoBehaviour {
+namespace Hidayat_Script
+{
+    public class Customer : MonoBehaviour
+    {
+       public IceCreamManager IceCreamManager;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        void Start()
+        {
+            IceCreamManager.CreateRandomIceCream();
+        }
+
+
+    }
 }
