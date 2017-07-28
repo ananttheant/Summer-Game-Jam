@@ -1,52 +1,63 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hidayat_Script
+public class OrderManager : MonoBehaviour
 {
-    public class OrderManager : MonoBehaviour
+    Queue<GameObject> customers;
+
+    // Use this for initialization
+    void Start()
     {
-        Queue<GameObject> customers;
-
-        // Use this for initialization
-        void Start()
-        {
-            customers = new Queue<GameObject>();
-        }
+        customers = new Queue<GameObject>();
+    }
         
-        public int NumberOfCustomers()
-        {
-            return customers.Count;
-        }
+    public int NumberOfCustomers()
+    {
+        return customers.Count;
+    }
 
-        /// <summary>
-        /// Returns if the order created by player is the same as order from customers
-        /// </summary>
-        /// <returns></returns>
-        public bool CheckOrder()
+    /// <summary>
+    /// Returns if the order created by player is the same as order from customers
+    /// </summary>
+    /// <returns></returns>
+    public bool CheckOrder(IceCreamStructure icecream)
+    {
+        foreach (GameObject customer in customers)
         {
-            //foreach (GameObject customer in customers)
-            //{
-            //    //  if (customer.order == order)
-            //    //      customer.GetComponent<Order>();
-            //}
-            return false;
+            if (icecream == customer.GetComponent<Customer>().GetIceCream())
+            {
+                break;
+            }
         }
+        return false;
+    }
 
-        /// <summary>
-        /// When a new customer enters the line to order Ice Cream
-        /// </summary>
-        /// <param name="customer"></param>
-        public void AddCustomer(GameObject customer)
-        {
-            customers.Enqueue(customer);
-        }
+    /// <summary>
+    /// When a new customer enters the line to order Ice Cream
+    /// </summary>
+    /// <param name="customer"></param>
+    public void AddCustomer(GameObject customer)
+    {
+        customers.Enqueue(customer);
+    }
 
-        /// <summary>
-        /// Removing the first customer in the queue
-        /// </summary>
-        public void RemoveCustomer()
+    /// <summary>
+    /// Removing the first customer in the queue
+    /// </summary>
+    public void RemoveCustomer()
+    {
+        customers.Dequeue();
+    }
+
+    public void DebugCustomers()
+    {
+        foreach (GameObject customer in customers)
         {
-            customers.Dequeue();
+            print(customer.name);
+            print(customer.GetComponent<Customer>().GetIceCream().ConeType.Id);
+            print(customer.GetComponent<Customer>().GetIceCream().IceCream_FlavType.Id);
+            print(customer.GetComponent<Customer>().GetIceCream().SyrupType.Id);
+            print(customer.GetComponent<Customer>().GetIceCream().SprinkleType.Id);
         }
     }
 }

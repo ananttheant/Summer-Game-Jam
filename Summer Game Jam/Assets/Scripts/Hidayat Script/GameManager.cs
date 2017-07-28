@@ -7,16 +7,21 @@ namespace Hidayat_Script
 {
     public class GameManager : MonoBehaviour
     {
-        public OrderManager order_manager;
-        public DrunkPressureManager dp_manager;
+        float score;
+
+        OrderManager order_manager;
+        DrunkPressureManager dp_manager;
+
+        public Transform canvas;
+        public GameObject customer_prefab;
 
         // Use this for initialization
         void Start()
         {
-            if (order_manager == null)
-            {
-                // Find GameObject with the script
-            }
+            score = 0;
+            order_manager = GetComponent<OrderManager>();
+            dp_manager = GetComponent<DrunkPressureManager>();
+            Create_NewCustomer();
         }
 
         // Update is called once per frame
@@ -24,6 +29,10 @@ namespace Hidayat_Script
         {
             string status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
 
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                order_manager.DebugCustomers();
+            }
         }
 
         /// <summary>
@@ -31,8 +40,30 @@ namespace Hidayat_Script
         /// </summary>
         void Create_NewCustomer()
         {
-            GameObject customer = null; //Instantiate();
+            Vector3 position = new Vector3();
+            GameObject customer = Instantiate(customer_prefab, position, Quaternion.identity, canvas); //Instantiate();
             order_manager.AddCustomer(customer);
         }
+
+        void IceCreamChecking(IceCreamStructure icecream)
+        {
+            if (order_manager.CheckOrder(icecream))
+            {
+                CustomerHappy();
+            }
+            else
+            {
+                CustomerAngry();
+            }
+            order_manager.RemoveCustomer();
+        }
+
+        void CustomerHappy()
+        {
+
+        }
+
+        void CustomerAngry()
+        { }
     }
 }

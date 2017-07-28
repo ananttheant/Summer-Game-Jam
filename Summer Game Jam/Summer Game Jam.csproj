@@ -95,6 +95,7 @@
     <Compile Include="Assets\Scripts\Hidayat Script\DrunkPressureManager.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\GameManager.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\IceCreamManager.cs" />
+    <Compile Include="Assets\Scripts\Hidayat Script\IceCreamStructure.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\OrderManager.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Player.cs" />
   </ItemGroup>

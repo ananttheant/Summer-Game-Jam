@@ -1,18 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using Hidayat_Script;
 using UnityEngine;
 
-namespace Hidayat_Script
+public class Customer : MonoBehaviour
 {
-    public class Customer : MonoBehaviour
+    IceCreamManager icecream_manager;
+    IceCreamStructure icecream;
+
+    void Awake()
     {
-       public IceCreamManager IceCreamManager;
+        icecream_manager = new IceCreamManager();
+        icecream = icecream_manager.CreateRandomIceCream();
+    }
 
-        void Start()
-        {
-            IceCreamManager.CreateRandomIceCream();
-        }
+    public IceCreamStructure GetIceCream()
+    {
+        return icecream;
+    }
 
-
+    public void DebugIceCream()
+    {
+        print("Cone : " + icecream.ConeType.Id);
+        print("Flavour : " + icecream.IceCream_FlavType.Id);
+        print("Syrup : " + icecream.SyrupType.Id);
+        print("Sprinkle : " + icecream.SprinkleType.Id);
     }
 }
