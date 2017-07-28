@@ -26,11 +26,6 @@ public class GameManager : MonoBehaviour {
     {
         GameObject customer = null;//Instantiate();
         order_manager.AddCustomer(customer);
-        Make_Order(customer);
     }
-
-    void Make_Order(GameObject customer)
-    {
-        //customer.GetComponent<OrderManager>().Order();
-    }
+    
 }
