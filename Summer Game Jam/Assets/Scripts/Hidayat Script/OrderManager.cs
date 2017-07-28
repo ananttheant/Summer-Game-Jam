@@ -20,6 +20,11 @@ public class OrderManager : MonoBehaviour {
         customers.Enqueue(customer);
     }
 
+    public int NumberOfCustomers()
+    {
+        return customers.Count;
+    }
+
     /// <summary>
     /// Removing the first customer in the queue
     /// </summary>

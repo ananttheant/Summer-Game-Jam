@@ -10,13 +10,17 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
+        if (order_manager == null)
+        {
+            // Find GameObject with the script
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        string status = dp_manager.UpdateValues();
+        string status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
+
     }
 
     /// <summary>
