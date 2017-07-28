@@ -90,7 +90,6 @@
     <Compile Include="Assets\Scripts\Hidayat Script\Cone.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\DrunkPressureManager.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\IceCream.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\IceCreamManager.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\IceCream_Flav.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\OrderManager.cs" />
