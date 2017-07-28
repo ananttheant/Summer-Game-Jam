@@ -1,4 +1,4 @@
-﻿namespace Hidayat_Script
+﻿namespace Hidayat_Script.Classes
 {
 
     public class Cone
