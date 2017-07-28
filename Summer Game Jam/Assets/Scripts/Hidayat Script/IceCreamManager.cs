@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using Hidayat_Script;
+using Hidayat_Script.Classes;
 using UnityEngine;
 
 public class IceCreamManager : MonoBehaviour
