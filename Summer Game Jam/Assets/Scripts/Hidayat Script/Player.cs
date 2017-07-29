@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Hidayat_Script
 {
-    public class Player
+    public class Player : MonoBehaviour
     {
         public float DrunkValue;
         public float PressureValue;

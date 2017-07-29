@@ -6,7 +6,7 @@ public class Customer : MonoBehaviour
     IceCreamManager icecream_manager;
     IceCreamStructure icecream;
 
-    private void Awake()
+    void Start()
     {
         icecream_manager = new IceCreamManager();
         icecream = icecream_manager.CreateRandomIceCream();
