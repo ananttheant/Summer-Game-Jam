@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 2015
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Summer Game Jam", "Summer Game Jam.csproj", "{E7FBF311-5B45-1BB3-F300-DFAA59F2279A}"
 EndProject
 Global
