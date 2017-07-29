@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Hidayat_Script;
-using Hidayat_Script.Classes;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Hidayat_Script
 {
@@ -12,6 +8,7 @@ namespace Hidayat_Script
         private const int MaxRange = 4;
         private readonly bool  _randomBoolSprinkle = (Random.value > 0.5f);
         private readonly bool _randomBoolSyrup = (Random.value > 0.5f);
+
         public  IceCreamStructure CreateRandomIceCream()
         {
             var iceCream = new IceCreamStructure();

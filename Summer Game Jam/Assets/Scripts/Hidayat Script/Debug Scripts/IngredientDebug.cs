@@ -14,7 +14,5 @@ public class IngredientDebug : MonoBehaviour {
     {
         print(collider.transform.name);
     }
-
-    void Update()
-    { transform.position += new Vector3(0, -1); }
+    
 }
