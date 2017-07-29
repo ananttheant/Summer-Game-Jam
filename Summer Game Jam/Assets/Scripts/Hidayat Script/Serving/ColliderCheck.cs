@@ -14,12 +14,30 @@ public class ColliderCheck : MonoBehaviour
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(),
                 WaitingIceCream.gameObject.GetComponent<Collider2D>(), true);
 
-            var iceCreamMade = new IceCreamStructure();
-            iceCreamMade.ConeType.Id = currentTouchingGameObject.transform.GetComponent<Cone>().Id;
-            iceCreamMade.IceCream_FlavType.Id = currentTouchingGameObject.transform.FindChild("Ice Cream Flavour").GetComponent<IceCream_Flav>().Id;
+            IceCreamStructure iceCreamMade = new IceCreamStructure();
 
-            iceCreamMade.SprinkleType.Id = currentTouchingGameObject.transform.FindChild("Sprinkle").GetComponent<Sprinkle>().Id;
-            iceCreamMade.SyrupType.Id = currentTouchingGameObject.transform.FindChild("Syrup").GetComponent<Syrup>().Id;
+            if (WaitingIceCream.GetComponent<Cone>() != null)
+                iceCreamMade.ConeType.Id = currentTouchingGameObject.transform.GetComponent<Cone>().Id;
+            else
+                iceCreamMade.ConeType.Id = -1;
+            
+            if (WaitingIceCream.transform.childCount > 0)
+            {
+                if (WaitingIceCream.transform.FindChild("Ice Cream Flavour").GetComponent<IceCream_Flav>() != null)
+                    iceCreamMade.IceCream_FlavType.Id = currentTouchingGameObject.transform.FindChild("Ice Cream Flavour").GetComponent<IceCream_Flav>().Id;
+                else
+                    iceCreamMade.ConeType.Id = -1;
+
+                if (WaitingIceCream.transform.FindChild("Syrup").GetComponent<Syrup>() != null)
+                    iceCreamMade.SyrupType.Id = currentTouchingGameObject.transform.FindChild("Syrup").GetComponent<Syrup>().Id;
+                else
+                    iceCreamMade.SyrupType.Id = -1;
+
+                if (WaitingIceCream.transform.FindChild("Sprinkle").GetComponent<Sprinkle>() != null)
+                    iceCreamMade.SprinkleType.Id = currentTouchingGameObject.transform.FindChild("Sprinkle").GetComponent<Sprinkle>().Id;
+                else
+                    iceCreamMade.SprinkleType.Id = -1;
+            }
         }
     }
 

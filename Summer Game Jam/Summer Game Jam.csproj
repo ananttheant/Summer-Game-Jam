@@ -91,7 +91,6 @@
     <Compile Include="Assets\Scripts\Hidayat Script\Classes\IceCream_Flav.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Classes\Sprinkle.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Classes\Syrup.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\ColliderCheck.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\ConeScript.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Customer.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Debug Scripts\IngredientDebug.cs" />
