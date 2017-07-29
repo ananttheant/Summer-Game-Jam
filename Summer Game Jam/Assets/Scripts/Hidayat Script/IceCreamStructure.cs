@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Hidayat_Script.Classes;
 
-public class IceCreamStructure
+public class IceCreamStructure : MonoBehaviour
 {
     private Cone _cone;
     private IceCream_Flav _iceCreamflav;
@@ -42,5 +41,24 @@ public class IceCreamStructure
     {
         get { return _syrup; }
         set { _syrup = value; }
+    }
+
+    public void ConeImage(int id)
+    {
+    }
+
+    public void IceCreamFlavourImage()
+    {
+
+    }
+
+    public void SprinkleImage()
+    {
+
+    }
+
+    public void SyrupImage()
+    {
+
     }
 }

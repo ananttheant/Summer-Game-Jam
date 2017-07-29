@@ -1,8 +1,6 @@
-﻿namespace Hidayat_Script.Classes
-{
-    public class Sprinkle
-    {
+﻿using UnityEngine;
 
-        public int Id;
-    }
+public class Sprinkle : MonoBehaviour
+{
+    public int Id;
 }

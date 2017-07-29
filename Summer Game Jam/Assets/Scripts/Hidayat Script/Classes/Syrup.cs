@@ -1,9 +1,6 @@
-﻿namespace Hidayat_Script.Classes
+﻿using UnityEngine;
+
+public class Syrup : MonoBehaviour
 {
-    public class Syrup
-    {
-
-        public int Id;
-    }
+    public int Id;
 }
-
