@@ -12,6 +12,11 @@ public class Customer : MonoBehaviour
         icecream = icecream_manager.CreateRandomIceCream();
     }
 
+    public void DisplayIceCream()
+    {
+
+    }
+
     public IceCreamStructure GetIceCream()
     {
         return icecream;
