@@ -27,7 +27,7 @@ namespace Hidayat_Script
         // Update is called once per frame
         void Update()
         {
-            dp_manager.UpdateValues(order_manager.NumberOfCustomers());
+            //dp_manager.UpdateValues(order_manager.NumberOfCustomers());
 
             if (Input.GetKeyDown(KeyCode.M))
             {

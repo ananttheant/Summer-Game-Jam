@@ -3,24 +3,21 @@ using UnityEngine;
 
 public class Dispenser : MonoBehaviour
 {
-
-    public string KeyPressed; // the key pressed by the player. TODO
-    public GameObject Output; // this is the game object that should be present in the scene , cuz it will get duplicated.
+    public KeyCode[] keyPressed; // the key pressed by the player. TODO
+    public GameObject[] output; // this is the game object that should be present in the scene , cuz it will get duplicated.
     
 
 	// Update is called once per frame
 	private void Update ()
     {
-        if (Input.GetKeyDown(KeyPressed))
+        for (int i = 0; i < keyPressed.Length; i++)
         {
-            DespenseObject();
+            if (Input.GetKeyDown(keyPressed[i]))
+            {
+                Vector3 positionToSpawn = transform.GetChild(0).position;
+                GameObject ingredients = Instantiate(output[i], positionToSpawn, Quaternion.identity, transform.root);
+            }
         }
-    }
-
-    private void DespenseObject()
-    {
-        var position = gameObject.transform.position;
-        Object.Instantiate(Output, position , Output.transform.rotation , gameObject.transform);
     }
 
 }
