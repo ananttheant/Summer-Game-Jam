@@ -24,9 +24,21 @@ public class OrderManager : MonoBehaviour
     {
         foreach (GameObject customer in customers)
         {
-            if (icecream == customer.GetComponent<Customer>().GetIceCream())
+            if (customer.GetComponent<Customer>().GetIceCream().ConeType.Id == icecream.ConeType.Id)
             {
-                break;
+                if (customer.GetComponent<Customer>().GetIceCream().IceCream_FlavType.Id == icecream.IceCream_FlavType.Id)
+                {
+                    if (customer.GetComponent<Customer>().GetIceCream().SyrupType.Id == icecream.SyrupType.Id)
+                    {
+                        if (customer.GetComponent<Customer>().GetIceCream().SprinkleType.Id == icecream.SprinkleType.Id)
+                        {
+                            return true;
+                        }
+                        continue;
+                    }
+                    continue;
+                }
+                continue;
             }
         }
         return false;

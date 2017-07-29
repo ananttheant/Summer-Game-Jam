@@ -5,8 +5,9 @@ namespace Hidayat_Script
     public class DrunkPressureManager : MonoBehaviour
     {
         public float drunk_droprate;
-        public float pressure_increaserate;
         public float drinking_increaserate;
+        public float pressure_increaserate;
+        public float pressure_multiplier;
 
         public Player player;
 
@@ -22,9 +23,29 @@ namespace Hidayat_Script
         /// Serves as an Update but for the GameManager to call
         /// </summary>
         /// <returns></returns>
-        public string UpdateValues(int numberofcustomers)
+        public void UpdateValues(int numberofcustomers)
         {
-            return "";
+            CustomerInQueue(numberofcustomers);
+        }
+
+        public void CustomerAngry()
+        {
+            player.PressureValue += pressure_increaserate * 5;
+        }
+
+        public void CustomerHappy()
+        {
+            player.PressureValue -= pressure_increaserate * 2;
+        }
+
+        void PressureDrunkAffector()
+        {
+            
+        }
+
+        void CustomerInQueue(int numberofcustomers)
+        {
+            player.PressureValue += pressure_increaserate * numberofcustomers;
         }
     }
 }

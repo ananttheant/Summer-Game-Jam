@@ -27,9 +27,9 @@ namespace Hidayat_Script
         // Update is called once per frame
         void Update()
         {
-            string status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
+            dp_manager.UpdateValues(order_manager.NumberOfCustomers());
 
-            if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.M))
             {
                 order_manager.DebugCustomers();
             }
@@ -55,7 +55,6 @@ namespace Hidayat_Script
             {
                 CustomerAngry();
             }
-            order_manager.RemoveCustomer();
         }
 
         void CustomerHappy()
@@ -64,6 +63,9 @@ namespace Hidayat_Script
         }
 
         void CustomerAngry()
-        { }
+        {
+
+            order_manager.RemoveCustomer();
+        }
     }
 }
