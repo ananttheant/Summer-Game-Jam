@@ -128,6 +128,7 @@
     <Compile Include="Assets\Scripts\Hidayat Script\Customer.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Debug Scripts\IngredientDebug.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Dispenser.cs" />
+    <Compile Include="Assets\Scripts\Hidayat Script\Distortion.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\DrunkPressureManager.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\GameManager.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\IceCreamManager.cs" />
