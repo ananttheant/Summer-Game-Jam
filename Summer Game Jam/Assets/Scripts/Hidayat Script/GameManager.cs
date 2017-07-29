@@ -51,7 +51,7 @@ namespace Hidayat_Script
         void Create_NewCustomer()
         {
             Vector3 position = new Vector3();
-            GameObject customer = Instantiate(customer_prefab, position, Quaternion.identity, canvas); //Instantiate();
+            GameObject customer = Instantiate(customer_prefab, position, Quaternion.identity, canvas.GetChild(0)); //Instantiate();
             order_manager.AddCustomer(customer);
         }
 
