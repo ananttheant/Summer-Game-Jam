@@ -1,9 +1,6 @@
-﻿namespace Hidayat_Script.Classes
+﻿using UnityEngine;
+
+public class Cone : MonoBehaviour
 {
-
-    public class Cone
-    {
-        public int Id;
-
-    }
+    public int Id;
 }

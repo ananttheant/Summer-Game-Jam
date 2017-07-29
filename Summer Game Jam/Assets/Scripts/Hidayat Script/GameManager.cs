@@ -1,33 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Hidayat_Script;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Hidayat_Script
 {
     public class GameManager : MonoBehaviour
     {
+        [Header("Time for gameplay")]
+        public int minutes;
+        public int seconds;
+        [Header("Canvas & Customer Prefab")]
+        public Transform canvas;
+        public GameObject customer_prefab;
+
+        float gameplay_time;
         float score;
 
         OrderManager order_manager;
         DrunkPressureManager dp_manager;
 
-        public Transform canvas;
-        public GameObject customer_prefab;
 
         // Use this for initialization
         void Start()
         {
+            gameplay_time = (minutes * 60) + seconds;
             score = 0;
             order_manager = GetComponent<OrderManager>();
             dp_manager = GetComponent<DrunkPressureManager>();
-            Create_NewCustomer();
         }
 
         // Update is called once per frame
         void Update()
         {
-            //dp_manager.UpdateValues(order_manager.NumberOfCustomers());
+            if (Time.timeSinceLevelLoad > gameplay_time)
+            {
+                if (order_manager.NumberOfCustomers() <= 0)
+                {
+                    // Scene Change
+                    Debug.Log("Gameplay End");
+                }
+            }
 
             if (Input.GetKeyDown(KeyCode.M))
             {
@@ -41,7 +51,7 @@ namespace Hidayat_Script
         void Create_NewCustomer()
         {
             Vector3 position = new Vector3();
-            GameObject customer = Instantiate(customer_prefab, position, Quaternion.identity, canvas); //Instantiate();
+            GameObject customer = Instantiate(customer_prefab, position, Quaternion.identity, canvas.GetChild(0)); //Instantiate();
             order_manager.AddCustomer(customer);
         }
 

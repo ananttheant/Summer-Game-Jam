@@ -1,10 +1,8 @@
-﻿namespace Hidayat_Script.Classes
+﻿using UnityEngine;
+
+public class IceCream_Flav : MonoBehaviour
 {
-    public class IceCream_Flav
-    {
-        public int Id;
+    public int Id;
 
-    }
+
 }
-
-	
