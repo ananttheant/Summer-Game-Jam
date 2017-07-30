@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IceCreamStructure : MonoBehaviour
+public class IceCreamStructure
 {
     private Cone _cone;
     private IceCream_Flav _iceCreamflav;

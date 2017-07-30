@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hidayat_Script
+public class Player : MonoBehaviour
 {
-    public class Player : MonoBehaviour
-    {
-        public float DrunkValue;
-        public float PressureValue;
-    }
+    public float DrunkValue = 0;
+    public float PressureValue = 0;
+
+    public float maxDrunkValue = 100;
+    public float maxPressureValue = 100;
 }

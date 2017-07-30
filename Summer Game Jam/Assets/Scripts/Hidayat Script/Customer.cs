@@ -7,6 +7,8 @@ public class Customer : MonoBehaviour
     IceCreamManager icecream_manager;
     IceCreamStructure icecream;
 
+    public Sprite[] angry_Images;
+
     public Sprite[] cone_Images;
     public Sprite[] iceCream_Images;
     public Sprite[] syrup_Images;
@@ -46,5 +48,10 @@ public class Customer : MonoBehaviour
         print("Flavour : " + icecream.IceCream_FlavType.Id);
         print("Syrup : " + icecream.SyrupType.Id);
         print("Sprinkle : " + icecream.SprinkleType.Id);
+    }
+
+    public void Bye()
+    {
+        Destroy(gameObject);
     }
 }
