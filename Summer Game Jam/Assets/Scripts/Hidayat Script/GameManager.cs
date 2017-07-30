@@ -35,53 +35,61 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dp_manager.UpdateValues(order_manager.NumberOfCustomers());
+        string status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
 
-        if (Time.timeSinceLevelLoad > gameplay_time)
+        if (status == "Normal")
         {
-            if (order_manager.NumberOfCustomers() <= 0)
+            if (Time.timeSinceLevelLoad > gameplay_time)
             {
-                // Scene Change
-                Debug.Log("Gameplay End");
-            }
-        }
-
-        if (icecream != null)
-        {
-            if (Input.GetKeyDown(KeyCode.Return))
-            {
-                IceCreamChecking(icecream);
-                Destroy(icecream.obj);
+                if (order_manager.NumberOfCustomers() <= 0)
+                {
+                    // Scene Change
+                    Debug.Log("Gameplay End");
+                }
             }
 
-            if (Input.GetKeyDown(KeyCode.Backspace))
+            if (icecream != null)
             {
-                // increase pressure
-                Destroy(icecream.obj);
+                if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    IceCreamChecking(icecream);
+                    Destroy(icecream.obj);
+                }
 
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    // increase pressure
+                    Destroy(icecream.obj);
+
+                }
+                //colliderObj.GetComponent<ColliderCheck>().OrderUp();
             }
-            //colliderObj.GetComponent<ColliderCheck>().OrderUp();
-        }
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            int i = 0;
-            for (int j = 0; j < customer_positions.Length; j++)
+            if (Input.GetKeyDown(KeyCode.N))
             {
-                if (!customer_positions[j])
-                    break;
-                else
-                    i++;
+                int i = 0;
+                for (int j = 0; j < customer_positions.Length; j++)
+                {
+                    if (!customer_positions[j])
+                        break;
+                    else
+                        i++;
+                }
+                if (i == 3)
+                    return;
+                Create_NewCustomer();
             }
-            if (i == 3)
-                return;
-            Create_NewCustomer();
+        }
+        else if (status == "Drunk")
+        {
+
+        }
+        else if (status == "Pressured")
+        {
+
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            order_manager.DebugCustomers();
-        }
+        
     }
 
     /// <summary>

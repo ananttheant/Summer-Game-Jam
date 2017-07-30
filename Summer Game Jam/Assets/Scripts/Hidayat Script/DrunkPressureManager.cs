@@ -6,6 +6,7 @@ public class DrunkPressureManager : MonoBehaviour
     public float drinking_increaserate;
     public float pressure_increaserate;
     public float pressure_multiplier;
+    public float pressure_droprate;
 
     public Player player;
 
@@ -27,9 +28,11 @@ public class DrunkPressureManager : MonoBehaviour
     public string UpdateValues(int numberofcustomers)
     {
         CustomerInQueue(numberofcustomers);
+        
+        player.PressureValue = Mathf.Clamp01(player.PressureValue - pressure_droprate);
+        player.DrunkValue = Mathf.Clamp01(player.DrunkValue - drunk_droprate);
 
         pressure_meter.transform.localScale = new Vector3(pressure_meter.transform.localScale.x, Mathf.Clamp01(player.PressureValue / player.maxPressureValue), pressure_meter.transform.localScale.z);
-
         drunk_meter.transform.localScale = new Vector3(drunk_meter.transform.localScale.x, Mathf.Clamp01(player.DrunkValue / player.maxDrunkValue), drunk_meter.transform.localScale.z);
 
         if (player.PressureValue == player.maxPressureValue)
@@ -45,6 +48,17 @@ public class DrunkPressureManager : MonoBehaviour
         return "Normal";
     }
 
+    public void Drinking()
+    {
+        player.PressureValue = Mathf.Clamp01(player.PressureValue - pressure_droprate);
+        player.DrunkValue = Mathf.Clamp01(player.DrunkValue - drunk_droprate);
+    }
+
+    public void ThrowAway()
+    {
+        player.PressureValue += 0.02f;
+    }
+
     public void CustomerAngry()
     {
         player.PressureValue += pressure_increaserate * 5;
@@ -55,14 +69,9 @@ public class DrunkPressureManager : MonoBehaviour
         player.PressureValue -= pressure_increaserate * 2;
     }
 
-    void PressureDrunkAffector()
-    {
-            
-    }
-
     void CustomerInQueue(int numberofcustomers)
     {
-        Mathf.Clamp(player.PressureValue += pressure_increaserate * numberofcustomers, 0, player.maxPressureValue);
+        player.PressureValue = Mathf.Clamp(player.PressureValue + pressure_increaserate * numberofcustomers, 0, player.maxPressureValue);
         print(numberofcustomers);
     }
 }
