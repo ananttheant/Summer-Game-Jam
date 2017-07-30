@@ -38,30 +38,28 @@ public class DrunkPressureManager : MonoBehaviour
             camera.GetComponent<BlurOptimized>().blurSize = blur * 3;
         }
 
-        if (player.PressureValue == player.maxPressureValue)
+        if (player.PressureValue >= player.maxPressureValue)
         {
             return "Pressured";
         }
 
-        if (player.DrunkValue == player.maxDrunkValue)
+        if (player.DrunkValue >= player.maxDrunkValue)
         {
             return "Drunk";
         }
 
-        player.PressureValue = Mathf.Clamp(player.PressureValue - pressure_droprate, 0, 100);
-        player.DrunkValue = Mathf.Clamp(player.DrunkValue - drunk_droprate, 0, 100);
+        player.PressureValue = player.PressureValue - pressure_droprate;
+        player.DrunkValue = player.DrunkValue - drunk_droprate;
 
         pressure_meter.transform.localScale = new Vector3(pressure_meter.transform.localScale.x, Mathf.Clamp01(player.PressureValue / player.maxPressureValue), pressure_meter.transform.localScale.z);
         drunk_meter.transform.localScale = new Vector3(drunk_meter.transform.localScale.x, Mathf.Clamp01(player.DrunkValue / player.maxDrunkValue), drunk_meter.transform.localScale.z);
-
-
         return "Normal";
     }
 
     public void Drinking()
     {
-        player.PressureValue = Mathf.Clamp(player.PressureValue - (drinking_increaserate / 2), 0, 100);
-        player.DrunkValue = Mathf.Clamp(player.DrunkValue + drinking_increaserate, 0, 100);
+        player.PressureValue = Mathf.Clamp(player.PressureValue - (drinking_increaserate / 2), 0, 110);
+        player.DrunkValue = player.DrunkValue + drinking_increaserate;
     }
 
     public void ThrowAway()

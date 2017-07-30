@@ -43,23 +43,4 @@ public class IceCreamStructure
         get { return _syrup; }
         set { _syrup = value; }
     }
-
-    public void ConeImage(int id)
-    {
-    }
-
-    public void IceCreamFlavourImage()
-    {
-
-    }
-
-    public void SprinkleImage()
-    {
-
-    }
-
-    public void SyrupImage()
-    {
-
-    }
 }

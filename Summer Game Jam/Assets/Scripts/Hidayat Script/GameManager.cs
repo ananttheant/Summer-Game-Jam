@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +18,9 @@ public class GameManager : MonoBehaviour
     float timefromspawn;
     float spawntime = 1.5f;
     bool[] customer_positions;
+
+    string status;
+    int lastserved;
 
     public AudioPlayer audioplayer;
     OrderManager order_manager;
@@ -41,44 +43,25 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        string status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
-
-        print(status);
-
-        if (timefromspawn < Time.time)
+        if (Input.GetKeyDown(KeyCode.L))
         {
-            int i = 0;
-            for (int j = 0; j < customer_positions.Length; j++)
-            {
-                if (!customer_positions[j])
-                    break;
-                else
-                    i++;
-            }
-            if (i == 3)
-                return;
-            Create_NewCustomer();
+            print("Press");
         }
-
-        print(icecream);
+        status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
 
         if (status == "Normal")
         {
-            if (Time.timeSinceLevelLoad > gameplay_time)
+            if (Time.time > gameplay_time)
             {
-                if (order_manager.NumberOfCustomers() <= 0)
-                {
-                    // Scene Change
-                    Debug.Log("Gameplay End");
-                    SceneManager.LoadScene(1);
-                }
+                // Scene Change
+                Debug.Log("Gameplay End");
+                SceneManager.LoadScene(1);
             }
-
-            if (icecream != null)
+            if (IceCream != null)
             {
+                print(icecream);
                 if (Input.GetKeyDown(KeyCode.L))
                 {
-                    print("Hi");
                     IceCreamChecking(icecream);
                     Destroy(icecream.obj);
                 }
@@ -96,6 +79,14 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
+
+        if (timefromspawn < Time.time)
+        {
+            if(IsThereSpace())
+                Create_NewCustomer();
+        }
+        print("dasugfdua");
+        
     }
 
     public void Drink()
@@ -111,9 +102,7 @@ public class GameManager : MonoBehaviour
     {
         int rando_customer = Random.Range(0, 3);
         int rando_spot = Random.Range(0, 3);
-
-        if (!IsThereSpace())
-            return;
+        
 
         while (true)
         {
@@ -127,7 +116,7 @@ public class GameManager : MonoBehaviour
 
         GameObject customer = Instantiate(customer_prefabs[rando_customer], canvas.GetChild(1), true); //Instantiate();
         customer.name = "customer " + rando_customer;
-        customer.GetComponent<Customer>().ID = rando_customer;
+        customer.GetComponent<Customer>().ID = rando_spot;
         customer.transform.localPosition = new Vector3(-300, 100);
         customer.transform.localScale = new Vector3(1, 1, 1);
         customer_positions[rando_spot] = true;
@@ -165,6 +154,7 @@ public class GameManager : MonoBehaviour
         customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().happy_Images;
         customer.GetComponent<Animator>().SetInteger("CorrectOrder", 1);
         customer_positions[customer.GetComponent<Customer>().ID] = false;
+        lastserved = customer.GetComponent<Customer>().ID;
     }
 
     void CustomerAngry()
@@ -175,11 +165,14 @@ public class GameManager : MonoBehaviour
         customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().angry_Images;
         customer.GetComponent<Animator>().SetInteger("CorrectOrder", 0);
         customer_positions[customer.GetComponent<Customer>().ID] = false;
+        lastserved = customer.GetComponent<Customer>().ID;
     }
 
     public IceCreamStructure IceCream
     {
         get { return icecream; }
-        set { icecream = value; }
+        set { icecream = value;
+            print(icecream);
+        }
     }
 }
