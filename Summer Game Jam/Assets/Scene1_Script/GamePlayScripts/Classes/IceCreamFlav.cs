@@ -2,7 +2,7 @@
 
 namespace Scene1_Script.GamePlayScripts.Classes
 {
-    public class IceCream_Flav : MonoBehaviour
+    public class IceCreamFlav : MonoBehaviour
     {
         public int Id;
 

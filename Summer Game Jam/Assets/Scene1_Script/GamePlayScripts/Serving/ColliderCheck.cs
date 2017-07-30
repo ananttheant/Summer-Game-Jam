@@ -17,7 +17,7 @@ namespace Scene1_Script.GamePlayScripts.Serving
                 Physics2D.IgnoreCollision(GetComponent<Collider2D>(),
                     WaitingIceCream.gameObject.GetComponent<Collider2D>(), true);
 
-                IceCreamStructure iceCreamMade = new IceCreamStructure();
+                var iceCreamMade = new IceCreamStructure();
                 if (WaitingIceCream.GetComponent<Cone>() != null)
                     iceCreamMade.ConeType.Id = currentTouchingGameObject.transform.GetComponent<Cone>().Id;
                 else
@@ -27,9 +27,9 @@ namespace Scene1_Script.GamePlayScripts.Serving
                 if (WaitingIceCream.transform.childCount > 0)
                 {
                     // Take in Ice Cream Flav
-                    if (WaitingIceCream.transform.GetChild(0).GetComponent<IceCream_Flav>() != null)
+                    if (WaitingIceCream.transform.GetChild(0).GetComponent<IceCreamFlav>() != null)
                         iceCreamMade.IceCream_FlavType.Id = WaitingIceCream.transform.GetChild(0)
-                            .GetComponent<IceCream_Flav>().Id;
+                            .GetComponent<IceCreamFlav>().Id;
                     else
                         iceCreamMade.ConeType.Id = -1;
 
@@ -37,7 +37,7 @@ namespace Scene1_Script.GamePlayScripts.Serving
                     if (WaitingIceCream.transform.GetChild(0).childCount > 0)
                     {
                         // Check names
-                        for (int i = 0; i < WaitingIceCream.transform.GetChild(0).childCount; i++)
+                        for (var i = 0; i < WaitingIceCream.transform.GetChild(0).childCount; i++)
                         {
                             if (WaitingIceCream.transform.GetChild(0).GetChild(i).name == "Syrup")
                             {
@@ -64,7 +64,7 @@ namespace Scene1_Script.GamePlayScripts.Serving
             }
         }
 
-        void OnCollisionStay2D(Collision2D currentTouchingGameObjectStayCollision)
+        private void OnCollisionStay2D(Collision2D currentTouchingGameObjectStayCollision)
         {
             if (WaitingIceCream == null && currentTouchingGameObjectStayCollision.gameObject.CompareTag("Ingredients"))
             {

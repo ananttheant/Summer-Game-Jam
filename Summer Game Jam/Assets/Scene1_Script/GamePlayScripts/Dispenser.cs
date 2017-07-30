@@ -14,38 +14,38 @@ namespace Scene1_Script.GamePlayScripts
 
         public void SpawnFirst()
         {
-            Vector3 positionToSpawn = transform.GetChild(0).position;
-            GameObject ingredients = Instantiate(output[0], positionToSpawn, Quaternion.identity,
+            var positionToSpawn = transform.GetChild(0).position;
+            var ingredients = Instantiate(output[0], positionToSpawn, Quaternion.identity,
                 transform.root.GetChild(3));
-            string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
-            ingredients.name = name;
+            var substringName = ingredients.name.Substring(0, ingredients.name.Length - 9);
+            ingredients.name = substringName;
         }
 
         public void SpawnSecond()
         {
-            Vector3 positionToSpawn = transform.GetChild(0).position;
-            GameObject ingredients = Instantiate(output[1], positionToSpawn, Quaternion.identity,
+            var positionToSpawn = transform.GetChild(0).position;
+            var ingredients = Instantiate(output[1], positionToSpawn, Quaternion.identity,
                 transform.root.GetChild(3));
-            string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
-            ingredients.name = name;
+            var substringName = ingredients.name.Substring(0, ingredients.name.Length - 9);
+            ingredients.name = substringName;
         }
 
         public void SpawnThird()
         {
-            Vector3 positionToSpawn = transform.GetChild(0).position;
-            GameObject ingredients = Instantiate(output[2], positionToSpawn, Quaternion.identity,
+            var positionToSpawn = transform.GetChild(0).position;
+            var ingredients = Instantiate(output[2], positionToSpawn, Quaternion.identity,
                 transform.root.GetChild(3));
-            string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
-            ingredients.name = name;
+            var substringName = ingredients.name.Substring(0, ingredients.name.Length - 9);
+            ingredients.name = substringName;
         }
 
         public void SpawnFourth()
         {
-            Vector3 positionToSpawn = transform.GetChild(0).position;
-            GameObject ingredients = Instantiate(output[3], positionToSpawn, Quaternion.identity,
+            var positionToSpawn = transform.GetChild(0).position;
+            var ingredients = Instantiate(output[3], positionToSpawn, Quaternion.identity,
                 transform.root.GetChild(3));
-            string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
-            ingredients.name = name;
+            var substringName = ingredients.name.Substring(0, ingredients.name.Length - 9);
+            ingredients.name = substringName;
         }
 
         public void SetToIdle()

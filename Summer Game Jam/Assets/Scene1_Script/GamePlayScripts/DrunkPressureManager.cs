@@ -19,7 +19,7 @@ namespace Scene1_Script.GamePlayScripts
         public BlurOptimized camera;
 
         // Use this for initialization
-        void Start()
+        private void Start()
         {
             if (player == null)
                 GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -36,7 +36,7 @@ namespace Scene1_Script.GamePlayScripts
 
             if (player.DrunkValue > player.MaxDrunkValue / 2)
             {
-                float blur = (player.DrunkValue - 50) / (player.MaxDrunkValue - 50);
+                var blur = (player.DrunkValue - 50) / (player.MaxDrunkValue - 50);
                 camera.GetComponent<BlurOptimized>().blurSize = blur * 3;
             }
 
@@ -81,7 +81,7 @@ namespace Scene1_Script.GamePlayScripts
             player.PressureValue -= pressure_increaserate * 2;
         }
 
-        void CustomerInQueue(int numberofcustomers)
+       private void CustomerInQueue(int numberofcustomers)
         {
             player.PressureValue = player.PressureValue + pressure_increaserate * numberofcustomers;
         }

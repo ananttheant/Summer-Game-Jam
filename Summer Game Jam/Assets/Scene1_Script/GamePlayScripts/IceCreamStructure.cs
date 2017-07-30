@@ -9,7 +9,7 @@ namespace Scene1_Script.GamePlayScripts
     {
         public GameObject Obj;
         private Cone _cone;
-        private IceCream_Flav _iceCreamflav;
+        private IceCreamFlav _iceCreamflav;
         private Sprinkle _sprinkle;
         private Syrup _syrup;
 
@@ -17,7 +17,7 @@ namespace Scene1_Script.GamePlayScripts
         {
             _cone = new Cone();
             _sprinkle = new Sprinkle();
-            _iceCreamflav = new IceCream_Flav();
+            _iceCreamflav = new IceCreamFlav();
             _syrup = new Syrup();
         }
 
@@ -28,7 +28,7 @@ namespace Scene1_Script.GamePlayScripts
             set { _cone = value; }
         }
 
-        public IceCream_Flav IceCream_FlavType
+        public IceCreamFlav IceCream_FlavType
         {
             get { return _iceCreamflav; }
 
