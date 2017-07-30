@@ -138,6 +138,7 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
+    <Compile Include="Assets\Scripts\Hidayat Script\AudioPlayer.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Classes\Cone.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Classes\IceCream_Flav.cs" />
     <Compile Include="Assets\Scripts\Hidayat Script\Classes\Sprinkle.cs" />

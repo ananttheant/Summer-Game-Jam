@@ -14,9 +14,13 @@ public class GameManager : MonoBehaviour
 
     float gameplay_time;
     float score;
+    float timefromspawn;
+    float spawntime = 1.5f;
 
+    bool drinking = false;
     bool[] customer_positions;
 
+    public AudioPlayer audioplayer;
     OrderManager order_manager;
     DrunkPressureManager dp_manager;
     IceCreamStructure icecream;
@@ -30,6 +34,8 @@ public class GameManager : MonoBehaviour
 
         order_manager = GetComponent<OrderManager>();
         dp_manager = GetComponent<DrunkPressureManager>();
+
+        timefromspawn = Time.time + spawntime;
     }
 
     // Update is called once per frame
@@ -37,59 +43,66 @@ public class GameManager : MonoBehaviour
     {
         string status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
 
-        if (status == "Normal")
+        if (timefromspawn < Time.time)
         {
-            if (Time.timeSinceLevelLoad > gameplay_time)
+            int i = 0;
+            for (int j = 0; j < customer_positions.Length; j++)
             {
-                if (order_manager.NumberOfCustomers() <= 0)
-                {
-                    // Scene Change
-                    Debug.Log("Gameplay End");
-                }
+                if (!customer_positions[j])
+                    break;
+                else
+                    i++;
             }
-
-            if (icecream != null)
-            {
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    IceCreamChecking(icecream);
-                    Destroy(icecream.obj);
-                }
-
-                if (Input.GetKeyDown(KeyCode.Backspace))
-                {
-                    // increase pressure
-                    Destroy(icecream.obj);
-
-                }
-                //colliderObj.GetComponent<ColliderCheck>().OrderUp();
-            }
-
-            if (Input.GetKeyDown(KeyCode.N))
-            {
-                int i = 0;
-                for (int j = 0; j < customer_positions.Length; j++)
-                {
-                    if (!customer_positions[j])
-                        break;
-                    else
-                        i++;
-                }
-                if (i == 3)
-                    return;
-                Create_NewCustomer();
-            }
-        }
-        else if (status == "Drunk")
-        {
-
-        }
-        else if (status == "Pressured")
-        {
-
+            if (i == 3)
+                return;
+            Create_NewCustomer();
         }
 
-        
+        if (!drinking)
+        {
+            if (status == "Normal")
+            {
+                if (Time.timeSinceLevelLoad > gameplay_time)
+                {
+                    if (order_manager.NumberOfCustomers() <= 0)
+                    {
+                        // Scene Change
+                        Debug.Log("Gameplay End");
+                    }
+                }
+
+                if (icecream != null)
+                {
+                    if (Input.GetKeyDown(KeyCode.Return))
+                    {
+                        IceCreamChecking(icecream);
+                        Destroy(icecream.obj);
+                    }
+
+                    if (Input.GetKeyDown(KeyCode.Backspace))
+                    {
+                        // increase pressure
+                        Destroy(icecream.obj);
+
+                    }
+                    //colliderObj.GetComponent<ColliderCheck>().OrderUp();
+                }
+            }
+            else if (status == "Drunk")
+            {
+                // Change Scene
+            }
+            else if (status == "Pressured")
+            {
+                // Change SCene
+            }
+        }
+    }
+
+    public void Drink()
+    {
+        audioplayer.PlayDrink();
+        dp_manager.Drinking();
     }
 
     /// <summary>
@@ -110,7 +123,9 @@ public class GameManager : MonoBehaviour
             else
                 break;
         }
-            
+
+        spawntime = Time.time + timefromspawn;
+
         GameObject customer = Instantiate(customer_prefabs[rando_customer], canvas.GetChild(1), true); //Instantiate();
         customer.name = "customer " + rando_customer;
         customer.GetComponent<Customer>().ID = rando_customer;
@@ -145,6 +160,7 @@ public class GameManager : MonoBehaviour
 
     void CustomerHappy()
     {
+        audioplayer.PlayCorrect();
         GameObject customer = order_manager.RemoveCustomer();
         dp_manager.CustomerHappy();
         customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().happy_Images;
@@ -154,6 +170,7 @@ public class GameManager : MonoBehaviour
 
     void CustomerAngry()
     {
+        audioplayer.PlayWrong();
         GameObject customer = order_manager.RemoveCustomer();
         dp_manager.CustomerAngry();
         customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().angry_Images;
