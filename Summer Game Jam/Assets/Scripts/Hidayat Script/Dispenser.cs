@@ -34,7 +34,7 @@ public class Dispenser : MonoBehaviour
             if (keyPressed[i] == _lastPressed)
             {
                 Vector3 positionToSpawn = transform.GetChild(0).position;
-                GameObject ingredients = Instantiate(output[i], positionToSpawn, Quaternion.identity, transform.root.GetChild(0));
+                GameObject ingredients = Instantiate(output[i], positionToSpawn, Quaternion.identity, transform.root.GetChild(3));
                 string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
                 ingredients.name = name;
             }

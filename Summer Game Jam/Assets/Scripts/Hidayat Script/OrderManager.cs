@@ -62,7 +62,7 @@ public class OrderManager : MonoBehaviour
     /// </summary>
     public GameObject RemoveCustomer()
     {
-        customers.Dequeue();
+        return customers.Dequeue();
     }
 
     public void DebugCustomers()

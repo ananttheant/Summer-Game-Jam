@@ -134,13 +134,18 @@ public class GameManager : MonoBehaviour
 
     void CustomerHappy()
     {
+        GameObject customer = order_manager.RemoveCustomer();
+        dp_manager.CustomerHappy();
         order_manager.RemoveCustomer();
+        customer.GetComponent<Animator>();
     }
 
     void CustomerAngry()
     {
-
+        GameObject customer = order_manager.RemoveCustomer();
+        dp_manager.CustomerAngry();
         order_manager.RemoveCustomer();
+        customer.GetComponent<Animator>();
     }
 
     public IceCreamStructure IceCream

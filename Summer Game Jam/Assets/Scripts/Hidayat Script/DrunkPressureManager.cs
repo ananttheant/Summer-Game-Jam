@@ -9,6 +9,9 @@ public class DrunkPressureManager : MonoBehaviour
 
     public Player player;
 
+    public GameObject pressure_meter;
+    public GameObject drunk_meter;
+
     // Use this for initialization
     void Start()
     {
@@ -24,6 +27,8 @@ public class DrunkPressureManager : MonoBehaviour
     public void UpdateValues(int numberofcustomers)
     {
         CustomerInQueue(numberofcustomers);
+
+
     }
 
     public void CustomerAngry()
