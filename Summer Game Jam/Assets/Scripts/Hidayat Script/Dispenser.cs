@@ -7,17 +7,22 @@ public class Dispenser : MonoBehaviour
     public GameObject[] output; // this is the game object that should be present in the scene , cuz it will get duplicated.
 
     
-    KeyCode lastPressed;
-    float timeToPress = 0;
+    private KeyCode _lastPressed;
+    private const float TimeToPress = 1;
+    private float _startTime = 0;
     // Update is called once per frame
 	void Update ()
     {
-        for (int i = 0; i < keyPressed.Length; i++)
+        if (Time.time > _startTime + TimeToPress)
         {
-            if (Input.GetKeyDown(keyPressed[i]))
+            for (int i = 0; i < keyPressed.Length; i++)
             {
-                lastPressed = keyPressed[i];
-                GetComponent<Animator>().SetBool("Dispense", true);
+                if (Input.GetKeyDown(keyPressed[i]))
+                {
+                    _startTime = Time.time;
+                    _lastPressed = keyPressed[i];
+                    GetComponent<Animator>().SetBool("Dispense", true);
+                }
             }
         }
     }
@@ -26,10 +31,13 @@ public class Dispenser : MonoBehaviour
     {
         for (int i = 0; i < keyPressed.Length; i++)
         {
-            if (keyPressed[i] == lastPressed)
+            if (keyPressed[i] == _lastPressed)
             {
                 Vector3 positionToSpawn = transform.GetChild(0).position;
                 GameObject ingredients = Instantiate(output[i], positionToSpawn, Quaternion.identity, transform.root.GetChild(0));
+                string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
+                ingredients.name = name;
+                print(ingredients.name);
             }
         }
     }
