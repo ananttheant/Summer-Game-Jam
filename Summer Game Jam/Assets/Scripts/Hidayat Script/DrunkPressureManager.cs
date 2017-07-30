@@ -24,11 +24,25 @@ public class DrunkPressureManager : MonoBehaviour
     /// Serves as an Update but for the GameManager to call
     /// </summary>
     /// <returns></returns>
-    public void UpdateValues(int numberofcustomers)
+    public string UpdateValues(int numberofcustomers)
     {
         CustomerInQueue(numberofcustomers);
 
+        pressure_meter.transform.localScale = new Vector3(pressure_meter.transform.localScale.x, Mathf.Clamp01(player.PressureValue / player.maxPressureValue), pressure_meter.transform.localScale.z);
 
+        drunk_meter.transform.localScale = new Vector3(drunk_meter.transform.localScale.x, Mathf.Clamp01(player.DrunkValue / player.maxDrunkValue), drunk_meter.transform.localScale.z);
+
+        if (player.PressureValue == player.maxPressureValue)
+        {
+            return "Pressured";
+        }
+
+        if (player.DrunkValue == player.maxDrunkValue)
+        {
+            return "Drunk";
+        }
+
+        return "Normal";
     }
 
     public void CustomerAngry()
@@ -48,6 +62,7 @@ public class DrunkPressureManager : MonoBehaviour
 
     void CustomerInQueue(int numberofcustomers)
     {
-        player.PressureValue += pressure_increaserate * numberofcustomers;
+        Mathf.Clamp(player.PressureValue += pressure_increaserate * numberofcustomers, 0, player.maxPressureValue);
+        print(numberofcustomers);
     }
 }

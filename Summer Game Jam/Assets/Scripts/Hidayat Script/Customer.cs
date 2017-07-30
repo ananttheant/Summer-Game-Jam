@@ -16,6 +16,7 @@ public class Customer : MonoBehaviour
     public Sprite[] sprinke_Images;
 
     public int ID;
+    public float timeToWait;
 
     private void Start()
     {
