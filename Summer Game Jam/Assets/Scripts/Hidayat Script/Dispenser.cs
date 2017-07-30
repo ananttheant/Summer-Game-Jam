@@ -37,7 +37,6 @@ public class Dispenser : MonoBehaviour
                 GameObject ingredients = Instantiate(output[i], positionToSpawn, Quaternion.identity, transform.root.GetChild(0));
                 string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
                 ingredients.name = name;
-                print(ingredients.name);
             }
         }
     }

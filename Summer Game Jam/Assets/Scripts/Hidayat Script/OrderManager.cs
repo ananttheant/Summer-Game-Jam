@@ -22,6 +22,10 @@ public class OrderManager : MonoBehaviour
     /// <returns></returns>
     public bool CheckOrder(IceCreamStructure icecream)
     {
+        print(icecream.ConeType.Id);
+        print(icecream.IceCream_FlavType.Id);
+        print(icecream.SyrupType.Id);
+        print(icecream.SprinkleType.Id);
         foreach (GameObject customer in customers)
         {
             if (customer.GetComponent<Customer>().GetIceCream().ConeType.Id == icecream.ConeType.Id)
@@ -56,13 +60,14 @@ public class OrderManager : MonoBehaviour
     /// <summary>
     /// Removing the first customer in the queue
     /// </summary>
-    public void RemoveCustomer()
+    public GameObject RemoveCustomer()
     {
         customers.Dequeue();
     }
 
     public void DebugCustomers()
     {
+        print(customers.Count);
         foreach (GameObject customer in customers)
         {
             print(customer.name);

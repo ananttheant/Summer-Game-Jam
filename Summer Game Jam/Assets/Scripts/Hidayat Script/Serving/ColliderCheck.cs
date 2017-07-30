@@ -15,7 +15,6 @@ public class ColliderCheck : MonoBehaviour
                 WaitingIceCream.gameObject.GetComponent<Collider2D>(), true);
 
             IceCreamStructure iceCreamMade = new IceCreamStructure();
-
             if (WaitingIceCream.GetComponent<Cone>() != null)
                 iceCreamMade.ConeType.Id = currentTouchingGameObject.transform.GetComponent<Cone>().Id;
             else
@@ -53,11 +52,7 @@ public class ColliderCheck : MonoBehaviour
             {
                 iceCreamMade.SprinkleType.Id = iceCreamMade.IceCream_FlavType.Id = iceCreamMade.SyrupType.Id = -1;
             }
-
-            print(iceCreamMade.ConeType.Id);
-            print(iceCreamMade.IceCream_FlavType.Id);
-            print(iceCreamMade.SyrupType.Id);
-            print(iceCreamMade.SprinkleType.Id);
+            GameObject.FindGameObjectWithTag("Game Logic").GetComponent<GameManager>().IceCream = iceCreamMade;
         }
     }
 
@@ -68,12 +63,10 @@ public class ColliderCheck : MonoBehaviour
             WaitingIceCream = currentTouchingGameObjectStayCollision.gameObject;
             Physics2D.IgnoreCollision(GetComponent<Collider2D>(), WaitingIceCream.gameObject.GetComponent<Collider2D>(), true);
         }
-            
     }
 
-    void SendOrderToCheck(IceCreamStructure iceCream)
+    public void OrderUp()
     {
-        GameObject.FindGameObjectWithTag("Game Logic").GetComponent<OrderManager>().CheckOrder(iceCream);
         WaitingIceCream = null;
     }
 
