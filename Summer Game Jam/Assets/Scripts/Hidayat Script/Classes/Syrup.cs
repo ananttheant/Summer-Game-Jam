@@ -2,5 +2,5 @@
 
 public class Syrup : MonoBehaviour
 {
-    public int Id;
+    public int Id = -1;
 }

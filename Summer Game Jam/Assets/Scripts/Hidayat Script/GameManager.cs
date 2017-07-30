@@ -86,7 +86,8 @@ namespace Hidayat_Script
                     break;
             }
             
-            GameObject customer = Instantiate(customer_prefabs[rando_customer], canvas.GetChild(0), true); //Instantiate();
+            GameObject customer = Instantiate(customer_prefabs[rando_customer], canvas.GetChild(1), true); //Instantiate();
+            customer.transform.localPosition = new Vector3(-300, 100);
             customer.transform.localScale = new Vector3(1, 1, 1);
             customer_positions[rando_spot] = true;
             customer.GetComponent<Animator>().Play("WalkToPosition" + ++rando_spot);

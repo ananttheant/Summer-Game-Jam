@@ -2,5 +2,5 @@
 
 public class Sprinkle : MonoBehaviour
 {
-    public int Id;
+    public int Id = -1;
 }
