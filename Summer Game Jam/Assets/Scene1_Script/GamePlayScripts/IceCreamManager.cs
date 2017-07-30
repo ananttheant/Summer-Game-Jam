@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Hidayat_Script
+namespace Scene1_Script.GamePlayScripts
 {
     public class IceCreamManager
     {
