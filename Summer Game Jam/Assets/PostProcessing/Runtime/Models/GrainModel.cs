@@ -5,6 +5,7 @@ namespace UnityEngine.PostProcessing
     [Serializable]
     public class GrainModel : PostProcessingModel
     {
+       
         [Serializable]
         public struct Settings
         {
@@ -19,6 +20,15 @@ namespace UnityEngine.PostProcessing
 
             [Range(0f, 1f), Tooltip("Controls the noisiness response curve based on scene luminance. Lower values mean less noise in dark areas.")]
             public float luminanceContribution;
+
+            public float IntensityValue
+            {
+                get { return intensity; }
+                set { intensity = value; }
+            }
+
+
+
 
             public static Settings defaultSettings
             {

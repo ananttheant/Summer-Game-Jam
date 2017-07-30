@@ -12,7 +12,7 @@ public class Customer : MonoBehaviour
     public Sprite[] syrup_Images;
     public Sprite[] sprinke_Images;
 
-    void Start()
+    private void Start()
     {
         icecream_manager = new IceCreamManager();
         icecream = icecream_manager.CreateRandomIceCream();
@@ -20,19 +20,19 @@ public class Customer : MonoBehaviour
 
     public void DisplayIceCream()
     {
-        Transform Cone = transform.GetChild(0).GetChild(0);
-        Cone.GetComponent<Image>().sprite = cone_Images[icecream.ConeType.Id];
-        Cone.GetChild(0).GetComponent<Image>().sprite = iceCream_Images[icecream.IceCream_FlavType.Id];
+        var cone = transform.GetChild(0).GetChild(0);
+        cone.GetComponent<Image>().sprite = cone_Images[icecream.ConeType.Id];
+        cone.GetChild(0).GetComponent<Image>().sprite = iceCream_Images[icecream.IceCream_FlavType.Id];
 
         if (icecream.SyrupType.Id > -1)
-            Cone.GetChild(0).GetChild(0).GetComponent<Image>().sprite = syrup_Images[icecream.SyrupType.Id];
+            cone.GetChild(0).GetChild(0).GetComponent<Image>().sprite = syrup_Images[icecream.SyrupType.Id];
         else
-            Cone.GetChild(0).GetChild(0).gameObject.SetActive(false);
+            cone.GetChild(0).GetChild(0).gameObject.SetActive(false);
 
         if (icecream.SprinkleType.Id > -1)
-            Cone.GetChild(0).GetChild(1).GetComponent<Image>().sprite = sprinke_Images[icecream.SprinkleType.Id];
+            cone.GetChild(0).GetChild(1).GetComponent<Image>().sprite = sprinke_Images[icecream.SprinkleType.Id];
         else
-            Cone.GetChild(0).GetChild(1).gameObject.SetActive(false);
+            cone.GetChild(0).GetChild(1).gameObject.SetActive(false);
     }
 
     public IceCreamStructure GetIceCream()
