@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class IceCreamStructure
 {
+    public GameObject obj;
     private Cone _cone;
     private IceCream_Flav _iceCreamflav;
     private Sprinkle _sprinkle;

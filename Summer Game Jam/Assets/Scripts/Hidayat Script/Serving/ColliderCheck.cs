@@ -52,6 +52,7 @@ public class ColliderCheck : MonoBehaviour
             {
                 iceCreamMade.SprinkleType.Id = iceCreamMade.IceCream_FlavType.Id = iceCreamMade.SyrupType.Id = -1;
             }
+            iceCreamMade.obj = WaitingIceCream;
             GameObject.FindGameObjectWithTag("Game Logic").GetComponent<GameManager>().IceCream = iceCreamMade;
         }
     }
