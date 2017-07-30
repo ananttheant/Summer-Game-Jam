@@ -84,7 +84,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ChangeScene.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -130,23 +129,24 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\AudioPlayer.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Classes\Cone.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Classes\IceCream_Flav.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Classes\Sprinkle.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Classes\Syrup.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\ConeScript.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Customer.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Debug Scripts\IngredientDebug.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Dispenser.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\DrunkPressureManager.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\IceCreamFlavourScript.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\IceCreamManager.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\IceCreamStructure.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\OrderManager.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Player.cs" />
-    <Compile Include="Assets\Scripts\Hidayat Script\Serving\ColliderCheck.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\AudioPlayer.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Classes\Cone.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Classes\IceCream_Flav.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Classes\Sprinkle.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Classes\Syrup.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\ConeScript.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Customer.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Debug Scripts\IngredientDebug.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Dispenser.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\DrunkPressureManager.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\GameManager.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\IceCreamFlavourScript.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\IceCreamManager.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\IceCreamStructure.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\OrderManager.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Player.cs" />
+    <Compile Include="Assets\Scene1_Script\Hidayat Script\Serving\ColliderCheck.cs" />
+    <Compile Include="Assets\Scene2_Script\ChangeScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
