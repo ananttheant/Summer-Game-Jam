@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -47,15 +48,12 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                if (order_manager.CheckOrder(icecream))
-                {
-                    CustomerHappy();
-                }
+                IceCreamChecking(icecream);
+                Destroy(icecream.obj);
             }
 
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
-                icecream = null;
                 // increase pressure
 
             }
@@ -103,6 +101,8 @@ public class GameManager : MonoBehaviour
         }
             
         GameObject customer = Instantiate(customer_prefabs[rando_customer], canvas.GetChild(1), true); //Instantiate();
+        customer.name = "customer " + rando_customer;
+        customer.GetComponent<Customer>().ID = rando_customer;
         customer.transform.localPosition = new Vector3(-300, 100);
         customer.transform.localScale = new Vector3(1, 1, 1);
         customer_positions[rando_spot] = true;
@@ -136,16 +136,16 @@ public class GameManager : MonoBehaviour
     {
         GameObject customer = order_manager.RemoveCustomer();
         dp_manager.CustomerHappy();
-        order_manager.RemoveCustomer();
-        customer.GetComponent<Animator>();
+        customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().happy_Images;
+        customer.GetComponent<Animator>().SetInteger("CorrectOrder", 1);
     }
 
     void CustomerAngry()
     {
         GameObject customer = order_manager.RemoveCustomer();
         dp_manager.CustomerAngry();
-        order_manager.RemoveCustomer();
-        customer.GetComponent<Animator>();
+        customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().angry_Images;
+        customer.GetComponent<Animator>().SetInteger("CorrectOrder", 0);
     }
 
     public IceCreamStructure IceCream
