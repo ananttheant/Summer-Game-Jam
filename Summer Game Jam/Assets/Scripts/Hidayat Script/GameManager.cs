@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,8 +18,6 @@ public class GameManager : MonoBehaviour
     float score;
     float timefromspawn;
     float spawntime = 1.5f;
-
-    bool drinking = false;
     bool[] customer_positions;
 
     public AudioPlayer audioplayer;
@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     {
         string status = dp_manager.UpdateValues(order_manager.NumberOfCustomers());
 
+        print(status);
+
         if (timefromspawn < Time.time)
         {
             int i = 0;
@@ -58,44 +60,41 @@ public class GameManager : MonoBehaviour
             Create_NewCustomer();
         }
 
-        if (!drinking)
+        print(icecream);
+
+        if (status == "Normal")
         {
-            if (status == "Normal")
+            if (Time.timeSinceLevelLoad > gameplay_time)
             {
-                if (Time.timeSinceLevelLoad > gameplay_time)
+                if (order_manager.NumberOfCustomers() <= 0)
                 {
-                    if (order_manager.NumberOfCustomers() <= 0)
-                    {
-                        // Scene Change
-                        Debug.Log("Gameplay End");
-                    }
-                }
-
-                if (icecream != null)
-                {
-                    if (Input.GetKeyDown(KeyCode.Return))
-                    {
-                        IceCreamChecking(icecream);
-                        Destroy(icecream.obj);
-                    }
-
-                    if (Input.GetKeyDown(KeyCode.Backspace))
-                    {
-                        // increase pressure
-                        Destroy(icecream.obj);
-
-                    }
-                    //colliderObj.GetComponent<ColliderCheck>().OrderUp();
+                    // Scene Change
+                    Debug.Log("Gameplay End");
+                    SceneManager.LoadScene(1);
                 }
             }
-            else if (status == "Drunk")
+
+            if (icecream != null)
             {
-                // Change Scene
+                if (Input.GetKeyDown(KeyCode.L))
+                {
+                    print("Hi");
+                    IceCreamChecking(icecream);
+                    Destroy(icecream.obj);
+                }
+
+                if (Input.GetKeyDown(KeyCode.Backspace))
+                {
+                    // increase pressure
+                    Destroy(icecream.obj);
+
+                }
+                //colliderObj.GetComponent<ColliderCheck>().OrderUp();
             }
-            else if (status == "Pressured")
-            {
-                // Change SCene
-            }
+        }
+        else if (status == "Drunk" || status == "Pressured")
+        {
+            SceneManager.LoadScene(1);
         }
     }
 

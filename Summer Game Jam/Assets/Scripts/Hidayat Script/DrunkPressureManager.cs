@@ -38,12 +38,6 @@ public class DrunkPressureManager : MonoBehaviour
             camera.GetComponent<BlurOptimized>().blurSize = blur * 3;
         }
 
-        player.PressureValue = Mathf.Clamp(player.PressureValue - pressure_droprate, 0, 100);
-        player.DrunkValue = Mathf.Clamp(player.DrunkValue - drunk_droprate, 0, 100);
-
-        pressure_meter.transform.localScale = new Vector3(pressure_meter.transform.localScale.x, Mathf.Clamp01(player.PressureValue / player.maxPressureValue), pressure_meter.transform.localScale.z);
-        drunk_meter.transform.localScale = new Vector3(drunk_meter.transform.localScale.x, Mathf.Clamp01(player.DrunkValue / player.maxDrunkValue), drunk_meter.transform.localScale.z);
-
         if (player.PressureValue == player.maxPressureValue)
         {
             return "Pressured";
@@ -53,6 +47,13 @@ public class DrunkPressureManager : MonoBehaviour
         {
             return "Drunk";
         }
+
+        player.PressureValue = Mathf.Clamp(player.PressureValue - pressure_droprate, 0, 100);
+        player.DrunkValue = Mathf.Clamp(player.DrunkValue - drunk_droprate, 0, 100);
+
+        pressure_meter.transform.localScale = new Vector3(pressure_meter.transform.localScale.x, Mathf.Clamp01(player.PressureValue / player.maxPressureValue), pressure_meter.transform.localScale.z);
+        drunk_meter.transform.localScale = new Vector3(drunk_meter.transform.localScale.x, Mathf.Clamp01(player.DrunkValue / player.maxDrunkValue), drunk_meter.transform.localScale.z);
+
 
         return "Normal";
     }
@@ -80,6 +81,6 @@ public class DrunkPressureManager : MonoBehaviour
 
     void CustomerInQueue(int numberofcustomers)
     {
-        player.PressureValue = Mathf.Clamp(player.PressureValue + pressure_increaserate * numberofcustomers, 0, player.maxPressureValue);
+        player.PressureValue = player.PressureValue + pressure_increaserate * numberofcustomers;
     }
 }
