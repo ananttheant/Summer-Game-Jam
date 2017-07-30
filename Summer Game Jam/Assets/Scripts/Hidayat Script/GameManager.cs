@@ -35,6 +35,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        dp_manager.UpdateValues(order_manager.NumberOfCustomers());
+
         if (Time.timeSinceLevelLoad > gameplay_time)
         {
             if (order_manager.NumberOfCustomers() <= 0)
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Backspace))
             {
                 // increase pressure
+                Destroy(icecream.obj);
 
             }
             //colliderObj.GetComponent<ColliderCheck>().OrderUp();
@@ -138,6 +141,7 @@ public class GameManager : MonoBehaviour
         dp_manager.CustomerHappy();
         customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().happy_Images;
         customer.GetComponent<Animator>().SetInteger("CorrectOrder", 1);
+        customer_positions[customer.GetComponent<Customer>().ID] = false;
     }
 
     void CustomerAngry()
@@ -146,6 +150,7 @@ public class GameManager : MonoBehaviour
         dp_manager.CustomerAngry();
         customer.GetComponent<Image>().sprite = customer.GetComponent<Customer>().angry_Images;
         customer.GetComponent<Animator>().SetInteger("CorrectOrder", 0);
+        customer_positions[customer.GetComponent<Customer>().ID] = false;
     }
 
     public IceCreamStructure IceCream
