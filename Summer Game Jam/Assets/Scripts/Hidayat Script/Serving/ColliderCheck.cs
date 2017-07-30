@@ -21,33 +21,52 @@ public class ColliderCheck : MonoBehaviour
             else
                 iceCreamMade.ConeType.Id = -1;
             
+            // If there are ingredients on top of cone
             if (WaitingIceCream.transform.childCount > 0)
             {
-                if (WaitingIceCream.transform.FindChild("Ice Cream Flavour").GetComponent<IceCream_Flav>() != null)
-                    iceCreamMade.IceCream_FlavType.Id = currentTouchingGameObject.transform.FindChild("Ice Cream Flavour").GetComponent<IceCream_Flav>().Id;
+                // Take in Ice Cream Flav
+                if (WaitingIceCream.transform.GetChild(0).GetComponent<IceCream_Flav>() != null)
+                    iceCreamMade.IceCream_FlavType.Id = WaitingIceCream.transform.GetChild(0).GetComponent<IceCream_Flav>().Id;
                 else
                     iceCreamMade.ConeType.Id = -1;
 
-                if (WaitingIceCream.transform.FindChild("Syrup").GetComponent<Syrup>() != null)
-                    iceCreamMade.SyrupType.Id = currentTouchingGameObject.transform.FindChild("Syrup").GetComponent<Syrup>().Id;
-                else
-                    iceCreamMade.SyrupType.Id = -1;
+                // If there are any toppings on Ice Cream Flav
+                if (WaitingIceCream.transform.GetChild(0).childCount > 0)
+                {
+                    // Check names
+                    for (int i = 0; i < WaitingIceCream.transform.GetChild(0).childCount; i++)
+                    {
+                        if (WaitingIceCream.transform.GetChild(0).GetChild(i).name == "Syrup")
+                        {
+                            iceCreamMade.SyrupType.Id = currentTouchingGameObject.transform.GetChild(0).GetChild(i).GetComponent<Syrup>().Id;
+                        }
+                        else if (WaitingIceCream.transform.GetChild(0).GetChild(i).name == "Sprinkle")
+                        {
+                            iceCreamMade.SprinkleType.Id = currentTouchingGameObject.transform.GetChild(0).GetChild(i).GetComponent<Sprinkle>().Id;
+                        }
+                    }
+                }
 
-                if (WaitingIceCream.transform.FindChild("Sprinkle").GetComponent<Sprinkle>() != null)
-                    iceCreamMade.SprinkleType.Id = currentTouchingGameObject.transform.FindChild("Sprinkle").GetComponent<Sprinkle>().Id;
-                else
-                    iceCreamMade.SprinkleType.Id = -1;
             }
+            // If there are no ingredients
+            else
+            {
+                iceCreamMade.SprinkleType.Id = iceCreamMade.IceCream_FlavType.Id = iceCreamMade.SyrupType.Id = -1;
+            }
+
+            print(iceCreamMade.ConeType.Id);
+            print(iceCreamMade.IceCream_FlavType.Id);
+            print(iceCreamMade.SyrupType.Id);
+            print(iceCreamMade.SprinkleType.Id);
         }
     }
 
-    void OnCollisionStay(Collision currentTouchingGameObjectStayCollision)
+    void OnCollisionStay2D(Collision2D currentTouchingGameObjectStayCollision)
     {
         if (WaitingIceCream == null && currentTouchingGameObjectStayCollision.gameObject.CompareTag("Ingredients"))
         {
             WaitingIceCream = currentTouchingGameObjectStayCollision.gameObject;
-            Physics2D.IgnoreCollision(GetComponent<Collider2D>(),
-                WaitingIceCream.gameObject.GetComponent<Collider2D>(), true);
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), WaitingIceCream.gameObject.GetComponent<Collider2D>(), true);
         }
             
     }

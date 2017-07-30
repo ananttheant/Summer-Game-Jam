@@ -8,16 +8,21 @@ public class Dispenser : MonoBehaviour
 
     
     KeyCode lastPressed;
-    float timeToPress = 0;
+    float timeToPress = 1;
+    float startTime = 0;
     // Update is called once per frame
 	void Update ()
     {
-        for (int i = 0; i < keyPressed.Length; i++)
+        if (Time.time > startTime + timeToPress)
         {
-            if (Input.GetKeyDown(keyPressed[i]))
+            for (int i = 0; i < keyPressed.Length; i++)
             {
-                lastPressed = keyPressed[i];
-                GetComponent<Animator>().SetBool("Dispense", true);
+                if (Input.GetKeyDown(keyPressed[i]))
+                {
+                    startTime = Time.time;
+                    lastPressed = keyPressed[i];
+                    GetComponent<Animator>().SetBool("Dispense", true);
+                }
             }
         }
     }
@@ -30,6 +35,9 @@ public class Dispenser : MonoBehaviour
             {
                 Vector3 positionToSpawn = transform.GetChild(0).position;
                 GameObject ingredients = Instantiate(output[i], positionToSpawn, Quaternion.identity, transform.root.GetChild(0));
+                string name = ingredients.name.Substring(0, ingredients.name.Length - 9);
+                ingredients.name = name;
+                print(ingredients.name);
             }
         }
     }
